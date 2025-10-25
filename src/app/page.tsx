@@ -3,18 +3,18 @@
 import { useState } from 'react';
 import { Particles } from '@/components/ui/particles';
 import { Spotlight } from '@/components/ui/spotlight';
-import HeroSection from '@/components/sections/hero-section';
+//import HeroSection from '@/components/sections/hero-section';
 import RegistrationForm from '@/components/sections/registration-form';
 
 export default function WaitlistPage() {
   const [color] = useState('#0a59eb');
 
-  const scrollToForm = () => {
-    const formElement = document.getElementById('registration-form');
-    if (formElement) {
-      formElement.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+  // const scrollToForm = () => {
+  //   const formElement = document.getElementById('registration-form');
+  //   if (formElement) {
+  //     formElement.scrollIntoView({ behavior: 'smooth' });
+  //   }
+  // };
 
   return (
     <main className="relative min-h-screen w-full overflow-hidden">
@@ -28,7 +28,7 @@ export default function WaitlistPage() {
         color={color}
       />
 
-      <HeroSection onScrollToForm={scrollToForm} />
+      {/* <HeroSection onScrollToForm={scrollToForm} /> */}
       <RegistrationForm />
 
       <style jsx global>{`
