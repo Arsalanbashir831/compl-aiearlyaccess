@@ -1,17 +1,10 @@
 'use client';
 
-import type React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
-import { Bricolage_Grotesque } from 'next/font/google';
-import { cn } from '@/lib/utils';
 import Image from 'next/image';
 import SecurityCards from './security-cards';
 import BouncingArrow from '../ui/bouncing-arrow';
-
-const brico = Bricolage_Grotesque({
-  subsets: ['latin'],
-});
 
 interface HeroSectionProps {
   onScrollToForm: () => void;
@@ -48,10 +41,7 @@ export default function HeroSection({ onScrollToForm }: HeroSectionProps) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.2 }}
-          className={cn(
-            'from-foreground via-foreground/80 to-foreground/40 mb-4 cursor-crosshair bg-linear-to-b bg-clip-text text-4xl font-bold text-transparent sm:text-7xl',
-            brico.className,
-          )}
+          className="from-foreground via-foreground/80 to-foreground/40 mb-4 cursor-crosshair bg-linear-to-b bg-clip-text text-4xl font-bold text-transparent sm:text-7xl"
         >
           Get Early{' '}
           <span className="bg-linear-to-b from-foreground to-primary bg-clip-text text-transparent">

@@ -4,23 +4,11 @@ import type React from 'react';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Sparkles } from 'lucide-react';
-import { Bricolage_Grotesque } from 'next/font/google';
-import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-
-const brico = Bricolage_Grotesque({
-  subsets: ['latin'],
-});
-
-interface FormData {
-  fullName: string;
-  email: string;
-  phoneNumber: string;
-  companyName: string;
-  companyPosition: string;
-}
+import { type FormData } from '@/lib/validation';
+import { toast } from 'sonner';
 
 export default function RegistrationForm() {
   const [formData, setFormData] = useState<FormData>({
@@ -32,7 +20,6 @@ export default function RegistrationForm() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-  const [error, setError] = useState<string | null>(null);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -45,13 +32,42 @@ export default function RegistrationForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setError(null);
 
-    // Your form submission logic here
-    // For now, let's just simulate a delay
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    setSubmitted(true);
-    setIsSubmitting(false);
+    try {
+      const response = await fetch('/api/submit-waitlist', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        // Handle validation errors
+        if (result.details && Array.isArray(result.details)) {
+          const firstError = result.details[0];
+          toast.error(firstError.message, {
+            description: `Please check the ${firstError.field} field`,
+          });
+          return;
+        }
+        throw new Error(result.error || 'Failed to submit form');
+      }
+
+      setSubmitted(true);
+      toast.success('Successfully joined the waitlist!', {
+        description: 'Thank you for your interest in Compl-AI.',
+      });
+    } catch (error) {
+      console.error('Form submission error:', error);
+      toast.error('Failed to submit form', {
+        description: error instanceof Error ? error.message : 'Please try again.',
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -63,10 +79,7 @@ export default function RegistrationForm() {
           transition={{ duration: 0.5 }}
           className="text-center mb-12"
         >
-          <h2 className={cn(
-            'from-foreground via-foreground/80 to-foreground/40 mb-4 cursor-crosshair bg-linear-to-b bg-clip-text text-3xl font-bold text-transparent sm:text-5xl',
-            brico.className,
-          )}>
+          <h2 className="from-foreground via-foreground/80 to-foreground/40 mb-4 cursor-crosshair bg-linear-to-b bg-clip-text text-3xl font-bold text-transparent sm:text-5xl">
             Join the{' '}
             <span className="bg-linear-to-b from-foreground to-primary bg-clip-text text-transparent">
               Waitlist
@@ -132,7 +145,7 @@ export default function RegistrationForm() {
                       onChange={handleInputChange}
                       required
                       className="border-primary/20 text-foreground placeholder:text-muted-foreground/70 focus:border-primary/50 focus:ring-primary/30 rounded-xl border bg-white/5 px-4 py-6 backdrop-blur-md transition-all focus:ring-2"
-                      placeholder="Enter your phone number"
+                      placeholder="e.g., 03001234567 or +923001234567"
                     />
                   </div>
 
@@ -169,15 +182,6 @@ export default function RegistrationForm() {
                   />
                 </div>
 
-                {error && (
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    className="border-destructive/40 bg-destructive/10 text-destructive rounded-xl border px-4 py-3 text-sm"
-                  >
-                    {error}
-                  </motion.div>
-                )}
 
                 <Button
                   type="submit"
