@@ -9,7 +9,7 @@ export default function SecurityCards() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, delay: 0.7 }}
-      className="mb-12 grid grid-cols-2 gap-6 sm:grid-cols-3"
+      className="mb-12 grid grid-cols gap-6 sm:grid-cols-3"
     >
       <div className="border-primary/10 flex flex-col items-center justify-center rounded-xl border bg-white/5 p-4 backdrop-blur-md glass2 h-32">
         <div className="flex items-center justify-center mb-2 h-16">
