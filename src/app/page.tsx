@@ -33,12 +33,12 @@ export default function WaitlistPage() {
       />
 
       {/* <HeroSection onScrollToForm={scrollToForm} /> */}
-      <div className="mx-auto max-w-2xl px-4 pt-16 pb-4 text-center">
+      <div className="mx-auto max-w-2xl px-4 pt-16 pb-0 text-center">
       <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="border-primary/10 from-primary/15 to-primary/5 mb-4 inline-flex items-center gap-2 rounded-full border bg-linear-to-r px-4 py-2 backdrop-blur-sm"
+          className="border-primary/10 from-primary/15 to-primary/5 mb-0 inline-flex items-center gap-2 rounded-full border bg-linear-to-r px-4 py-2 backdrop-blur-sm"
         >
           <Image
             src="/logo.svg"
