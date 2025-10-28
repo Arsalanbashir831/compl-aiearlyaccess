@@ -137,16 +137,23 @@ export default function RegistrationForm() {
                     <Label htmlFor="phoneNumber">
                       Phone Number *
                     </Label>
-                    <Input
-                      type="tel"
-                      name="phoneNumber"
-                      id="phoneNumber"
-                      value={formData.phoneNumber}
-                      onChange={handleInputChange}
-                      required
-                      className="border-primary/20 text-foreground placeholder:text-muted-foreground/70 focus:border-primary/50 focus:ring-primary/30 rounded-xl border bg-white/5 px-4 py-6 backdrop-blur-md transition-all focus:ring-2"
-                      placeholder="e.g., 03001234567 or +923001234567"
-                    />
+                    <div className="relative">
+                      <div className="absolute left-4 top-1/2 -translate-y-1/2 z-10">
+                        <div className="flex items-center gap-2">
+                          <span className="text-foreground text-sm font-medium">+44</span>
+                        </div>
+                      </div>
+                      <Input
+                        type="tel"
+                        name="phoneNumber"
+                        id="phoneNumber"
+                        value={formData.phoneNumber}
+                        onChange={handleInputChange}
+                        required
+                        className="border-primary/20 text-foreground placeholder:text-muted-foreground/70 focus:border-primary/50 focus:ring-primary/30 rounded-xl border bg-white/5 pl-16 pr-4 py-6 backdrop-blur-md transition-all focus:ring-2"
+                        placeholder="Enter your number"
+                      />
+                    </div>
                   </div>
 
                   <div className="space-y-2">
