@@ -71,8 +71,8 @@ export default function RegistrationForm() {
   };
 
   return (
-    <section id="registration-form" className="relative z-100 min-h-screen flex items-center justify-center bg-linear-to-b from-transparent to-background/50">
-      <div className="mx-auto max-w-2xl px-4 py-16">
+    <section id="registration-form" className="relative z-100  flex items-center justify-center bg-linear-to-b from-transparent to-background/50">
+      <div className="mx-auto max-w-2xl px-4 pt-10 pb-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
