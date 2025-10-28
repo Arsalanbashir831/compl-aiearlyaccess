@@ -34,12 +34,18 @@ export default function RegistrationForm() {
     setIsSubmitting(true);
 
     try {
+      // Prepare form data with +44 prefix for phone number
+      const payloadData = {
+        ...formData,
+        phoneNumber: `+44${formData.phoneNumber}`,
+      };
+
       const response = await fetch('/api/submit-waitlist', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(payloadData),
       });
 
       const result = await response.json();
