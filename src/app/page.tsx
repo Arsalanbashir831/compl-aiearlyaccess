@@ -38,14 +38,16 @@ export default function WaitlistPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="border-primary/10 from-primary/15 to-primary/5 mb-0 inline-flex items-center gap-2 rounded-full border bg-linear-to-r px-4 py-2 backdrop-blur-sm"
+          onClick={() => window.location.href = 'https://compl-ai.co.uk'}
+          className=" cursor-pointer border-primary/10 from-primary/15 to-primary/5 mb-0 inline-flex items-center gap-2 rounded-full border bg-linear-to-r px-4 py-2 backdrop-blur-sm"
         >
           <Image
             src="/logo.svg"
             alt="logo"
             width={24}
             height={24}
-            className="spin h-6 w-6"
+            className="spin h-6 w-6 cursor-pointer"
+          
           />
           <span className="text-sm font-medium">Compl-AI</span>
           <motion.div
