@@ -64,7 +64,7 @@ export default function RegistrationForm() {
 
       setSubmitted(true);
       toast.success('Successfully joined the waitlist!', {
-        description: 'Thank you for your interest in Compl-AI.',
+        description: 'Thanks for joining the waitlist!',
       });
     } catch (error) {
       console.error('Form submission error:', error);
